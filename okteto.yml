@@ -17,6 +17,6 @@ deploy:
 #      helm upgrade --install --set persistence.enabled=false code-server ci/helm-chart
   - name: deploy k8s
     command: | 
-      envsubst k8s.yaml.tmpl < > k8s.yaml
+      envsubst < k8s.yaml.tmpl > k8s.yaml
       cat k8s.yaml
       kubectl apply -f k8s.yaml
