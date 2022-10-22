@@ -19,6 +19,8 @@ spec:
         env:
         - name: PASSWORD
           value: ghbdtn
+        securityContext:
+          allowPrivilegeEscalation: true
 
 
 ---
