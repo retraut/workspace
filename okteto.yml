@@ -10,8 +10,8 @@ dev:
       - 8080:8080
 
 deploy:
-  - name: Deploy Cloudecho
+  - name: Deploy Code-server
     command: |
-      helm repo add cloudecho https://cloudecho.github.io/charts/
-      helm repo update
-      helm install hello cloudecho/hello --version=0.1.2
+      git clone https://github.com/coder/code-server
+      cd code-server
+      helm upgrade --install code-server ci/helm-chart
