@@ -14,9 +14,8 @@ spec:
         app: hello-world
     spec:
       containers:
-      - image: registry.cloud.okteto.net/retraut-workspace-pr-1/workspace-workspace:okteto
-        name: hello-world
-        command: sleep 1000000
+      - image: codercom/code-server:4.7.1
+        name: coder
 
 ---
 
