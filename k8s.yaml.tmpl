@@ -14,7 +14,7 @@ spec:
         app: coder
     spec:
       containers:
-      - image: $OKTETO_BUILD_WORKSPACE_DEV_IMAGE
+      - image: $OKTETO_BUILD_WORKSPACE_IMAGE
         name: coder
         env:
         - name: PASSWORD
