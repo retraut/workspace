@@ -2,56 +2,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: coder
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-world
+      app: coder
   template:
     metadata:
       labels:
-        app: hello-world
+        app: coder
     spec:
       containers:
-      - image: codercom/code-server:4.7.1
+      - image: ${OKTETO_BUILD_WORKSPACE_DEV_IMAGE}
         name: coder
         env:
         - name: PASSWORD
           value: ghbdtn
-        securityContext:
-          allowPrivilegeEscalation: true
-
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world
+  name: coder
 spec:
   type: ClusterIP
   ports:
-  - name: "hello-world"
+  - name: "coder"
     port: 8080
   selector:
-    app: hello-world
+    app: coder
 
 ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hello-world
+  name: coder
   annotations:
-    dev.okteto.com/generate-host: hello-world
+    dev.okteto.com/generate-host: coder
 spec:
   rules:
   - http:
       paths:
       - backend:
           service:
-            name: hello-world
+            name: coder
             port:
               number: 8080
         path: /
