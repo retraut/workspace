@@ -1,0 +1,3 @@
+workspace:
+  console:
+    image: ubuntu:22.04
