@@ -2,19 +2,19 @@ build:
   workspace:
     context: .
 
-dev:
-  workspace:
-    image: ${OKTETO_BUILD_WORKSPACE_DEV_IMAGE}
-    command: bash 
-    forward:
-      - 8080:8080
+#dev:
+#  workspace:
+#    image: ${OKTETO_BUILD_WORKSPACE_DEV_IMAGE}
+#    command: bash 
+#    forward:
+#      - 8080:8080
 
 deploy:
-  - name: Deploy Code-server
-    command: |
-      git clone https://github.com/coder/code-server
-      cd code-server
-      helm upgrade --install --set persistence.enabled=false code-server ci/helm-chart
+#  - name: Deploy Code-server
+#    command: |
+#      git clone https://github.com/coder/code-server
+#      cd code-server
+#      helm upgrade --install --set persistence.enabled=false code-server ci/helm-chart
 
   - name: deploy k8s
     command: kubectl apply -f k8s.yaml
