@@ -9,3 +9,6 @@ deploy:
       envsubst < k8s.yaml.tmpl > k8s.yaml
       cat k8s.yaml
       kubectl apply -f k8s.yaml
+  - name: deploy wetty
+    command: |
+      kubectl apply -f wetty.yaml
