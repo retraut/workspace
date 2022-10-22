@@ -8,4 +8,4 @@ RUN echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 RUN apt update && apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-RUN echo | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /dev/null && if [ $? -eq 0 ]; then echo 'OK'; else echo 'NG'; fi
+#RUN echo | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /dev/null && if [ $? -eq 0 ]; then echo 'OK'; else echo 'NG'; fi
