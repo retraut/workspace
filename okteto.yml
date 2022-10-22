@@ -6,6 +6,8 @@ dev:
   workspace:
     image: ${OKTETO_BUILD_WORKSPACE_DEV_IMAGE}
     command: bash 
+    forward:
+      - 8080:8080
 
 deploy:
   - name: Deploy Cloudecho
