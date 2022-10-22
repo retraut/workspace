@@ -16,6 +16,7 @@ spec:
       containers:
       - image: registry.cloud.okteto.net/retraut-workspace-pr-1/workspace-workspace:okteto
         name: hello-world
+        command: sleep 1000000
 
 ---
 
