@@ -16,9 +16,9 @@ spec:
       containers:
       - image: codercom/code-server:4.7.1
         name: coder
-      env:
-      - name: PASSWORD
-        value: ghbdtn
+        env:
+        - name: PASSWORD
+          value: ghbdtn
 
 
 ---
