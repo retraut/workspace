@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wetty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wetty
+  template:
+    metadata:
+      labels:
+        app: wetty
+    spec:
+      containers:
+      - image: wettyoss/wetty:main
+        name: wetty
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: wetty
+spec:
+  type: ClusterIP
+  ports:
+  - name: "wetty"
+    port: 3000
+  selector:
+    app: wetty
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wetty
+  annotations:
+    dev.okteto.com/generate-host: wetty
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: wetty
+            port:
+              number: 3000
+        path: /
+        pathType: ImplementationSpecific

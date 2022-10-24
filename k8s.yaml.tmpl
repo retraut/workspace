@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coder
+  template:
+    metadata:
+      labels:
+        app: coder
+    spec:
+      containers:
+      - image: $OKTETO_BUILD_WORKSPACE_IMAGE
+        name: coder
+        env:
+        - name: PASSWORD
+          value: ghbdtn
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: coder
+spec:
+  type: ClusterIP
+  ports:
+  - name: "coder"
+    port: 8080
+  selector:
+    app: coder
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: coder
+  annotations:
+    dev.okteto.com/generate-host: coder
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: coder
+            port:
+              number: 8080
+        path: /
+        pathType: ImplementationSpecific
